@@ -13,6 +13,9 @@ import (
 	"unsafe"
 )
 
+/*
+ * Exception process
+ */
 func ThrowAndCatchException() error {
 	// todo
 	// patch libqrencode
@@ -83,6 +86,7 @@ func (c *Input) New() error {
 	if c.input == nil {
 		return ThrowAndCatchException()
 	} else {
+		// set gc func
 		runtime.SetFinalizer(c, (*Input).Destroy)
 		return nil
 	}
@@ -182,3 +186,5 @@ func (c *Input) SetVersionAndErrorCorrectionLevel(version int, level C.QRecLevel
 func (c *Input) Destroy() {
 	C.QRinput_free(c.input)
 }
+
+//todo InputStruct
