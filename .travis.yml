@@ -12,5 +12,7 @@ before_install:
 - cd qrencode-4.0.0
 - sudo cmake .
 - sudo make
+- cd ../ 
+- sudo rm -rf ./qrencode-4.0.0
 script:
 - go test -v 
