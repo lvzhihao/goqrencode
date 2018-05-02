@@ -19,7 +19,7 @@ func TestEncodeString(t *testing.T) {
 		for x := 0; x < qrcode.width; x++ {
 			x := " "
 			if int(qrcode.data[offset]&1) > 0 {
-				x = "▉"
+				x = "x"
 			}
 			fmt.Print(" ", x)
 			offset += 1
