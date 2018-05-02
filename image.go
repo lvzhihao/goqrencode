@@ -27,6 +27,9 @@ var (
 	}
 )
 
+/*
+ * goqrencode image
+ */
 type Image struct {
 	size            int         // pixel for image
 	backgroundColor color.Color // background color
@@ -34,12 +37,18 @@ type Image struct {
 	image           image.Image // golang image.Image
 }
 
+/*
+ * new image
+ */
 func ImageNew() (ret *Image) {
 	ret = new(Image)
 	ret.New()
 	return
 }
 
+/*
+ * new image
+ */
 func (c *Image) New() {
 	c.size = ImageDefaultSize
 	c.backgroundColor = ImageDefaultBackgroundColor
@@ -47,38 +56,65 @@ func (c *Image) New() {
 	c.image = nil
 }
 
+/*
+ * set image size pixel
+ * default 200
+ */
 func (c *Image) SetSize(size int) *Image {
 	c.size = size
 	return c
 }
 
+/*
+ * get image size
+ */
 func (c *Image) GetSize() int {
 	return c.size
 }
 
+/*
+ * set image background color
+ * default black
+ */
 func (c *Image) SetBackgroundColor(back color.Color) *Image {
 	c.backgroundColor = back
 	return c
 }
 
+/*
+ * get image background color
+ */
 func (c *Image) GetBackgroundColor() color.Color {
 	return c.backgroundColor
 }
 
+/*
+ * set image foreground color
+ * default white
+ */
 func (c *Image) SetForegroundColor(fore color.Color) *Image {
 	c.foregroundColor = fore
 	return c
 }
 
+/*
+ * get image foreground color
+ */
 func (c *Image) GetForegroundColor() color.Color {
 	return c.foregroundColor
 }
 
+/*
+ * draw from qrcode
+ */
 func (c *Image) DrawQRcode(qrcode *QRcode) *Image {
 	c.Draw(qrcode.Bitmap())
 	return c
 }
 
+/*
+ * draw from bitmap
+ */
 func (c *Image) Draw(bitmap [][]bool) *Image {
 	width := len(bitmap)
 	// adjust size
@@ -129,6 +165,9 @@ func (c *Image) Draw(bitmap [][]bool) *Image {
 	return c
 }
 
+/*
+ * image encode image.Image
+ */
 func (c *Image) Encode(outputType string, w io.Writer) error {
 	switch outputType {
 	case IMAGE_OUTPUT_JPEG:
@@ -140,14 +179,23 @@ func (c *Image) Encode(outputType string, w io.Writer) error {
 	}
 }
 
+/*
+ * image/jpeg
+ */
 func (c *Image) JPEG(w io.Writer, options *jpeg.Options) error {
 	return jpeg.Encode(w, c.image, options)
 }
 
+/*
+ * image/png
+ */
 func (c *Image) PNG(w io.Writer) error {
 	return png.Encode(w, c.image)
 }
 
+/*
+ * write file
+ */
 func (c *Image) WriteFile(filename string) error {
 	fp, err := os.Create(filename)
 	if err != nil {

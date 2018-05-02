@@ -12,12 +12,12 @@ func TestImageDraw(t *testing.T) {
 		return
 	}
 	img := ImageNew()
-	err = img.SetForegroundColor(color.RGBA{25, 111, 49, 1}).DrawQRcode(qrcode).WriteFile("/tmp/qrcode-222.jpg")
+	err = img.SetForegroundColor(color.RGBA{25, 111, 49, 1}).DrawQRcode(qrcode).WriteFile("/tmp/qrcode-111.jpg")
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	err = img.SetForegroundColor(color.YCbCr{10, 10, 1}).DrawQRcode(qrcode).WriteFile("/tmp/qrcode-333.png")
+	err = img.SetForegroundColor(color.YCbCr{10, 10, 1}).DrawQRcode(qrcode).WriteFile("/tmp/qrcode-222.png")
 	if err != nil {
 		t.Error(err)
 		return

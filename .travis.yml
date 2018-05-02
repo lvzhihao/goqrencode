@@ -1,0 +1,16 @@
+language: go
+go:
+  - 1.8.x
+  - 1.9.x
+  - 1.10.x
+sudo: required
+dist: trusty
+group: deprecated-2017Q4
+before_install:
+- sudo wget https://fukuchi.org/works/qrencode/qrencode-4.0.0.tar.gz
+- sudo tar xvf qrencode-4.0.0.tar.gz
+- sudo cd qrencode-4.0.0
+- sudo cmake .
+- sudo make
+script:
+- go test -v 
