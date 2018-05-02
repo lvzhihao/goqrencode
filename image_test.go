@@ -22,4 +22,9 @@ func TestImageDraw(t *testing.T) {
 		t.Error(err)
 		return
 	}
+	err = img.SetForegroundColor(color.Black).DrawQRcode(qrcode).WriteFile("/tmp/qrcode-333.png")
+	if err != nil {
+		t.Error(err)
+		return
+	}
 }
