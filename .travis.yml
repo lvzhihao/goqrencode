@@ -11,7 +11,7 @@ before_install:
 - tar xvf qrencode-4.0.0.tar.gz
 - cd qrencode-4.0.0
 - sudo cmake .
-- sudo make
+- sudo make && sudo make install
 - cd ../ 
 - sudo rm -rf ./qrencode-4.0.0
 script:
